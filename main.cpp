@@ -7,9 +7,30 @@ graphics in Dev-C++ - nguyenvanquan7826
 #include <math.h>
 #include <windows.h>
 #include <winbgim.h> 
+#include "mylib.h"
 //#include <graphics.h>
 using namespace std;
+// toa do khung ve
+const int 	TDGOC_X=560, 
+			TDGOC_Y=0,
+			TDCUOI_X=1335,
+			TDCUOI_Y=685;
 int c = 3;
+void menu();
+void vetoado()
+{
+	setcolor(3);
+	// ve doc
+	for(int i=TDGOC_X+5;i<=TDCUOI_X;i+=5)
+		{
+			line(i,TDGOC_Y,i,TDCUOI_Y);
+		}
+	//ve ngang
+	for(int i=TDGOC_Y+5;i<=TDCUOI_Y;i+=5)
+		{
+			line(TDGOC_X,i,TDCUOI_X,i);
+		}
+}
 void draw8point(int x,int y,int x0,int y0){ //ve 8 diem doi xung
 	putpixel(x0+x,y0+y,c);
 	putpixel(x0-x,y0-y,c);
@@ -35,7 +56,7 @@ void circle_bresenham(int x0,int y0,int r){ //ve duong tron
 		draw8point(x,y,x0,y0);
 	}
 }
-// thua toan ve doan thang DDA
+// thuat toan ve doan thang DDA
 void DDALine(int x1,int y1,int x2,int y2,int c) {
 	int x=x1;
 	float y=y1;
@@ -103,8 +124,57 @@ void Elipse(int x_center,int y_center,int a,int b,int color)// ve elipse
         y=y+1;
     }
 }
-int main(){
-	initwindow(1028,700);
+void menu()
+{
+	setcolor(0);
+	rectangle(1,0,450,685);
+	rectangle(560,0,1335,685);
+	settextstyle(0,0,1);
+	setcolor(3);
+	int k=10;
+	for(int i=0;i<5;i++)
+	{
+		k+=20;
+		outtextxy(455,k,"<<<<(())>>>>");
+	}
+	
+	setcolor(12);
+	settextstyle(0,0,2);
+	outtextxy(490,170,"KY");
+	outtextxy(465,270,"THUAT");
+	outtextxy(490,370,"DO");
+	outtextxy(480,470,"HOA");
+	
+	settextstyle(0,0,1);
+	setcolor(3);
+	k=510;
+	for(int i=0;i<5;i++)
+	{
+		k+=20;
+		outtextxy(455,k,"<<<<(())>>>>");
+	}
+	// tab 2D
+	settextstyle(0,0,2);	
+	setfillstyle(1,7);
+	bar(70,10,200,60);
+	outtextxy(87,25,"-+2D+-");
+	//tab 3D
+	settextstyle(0,0,2);	
+	setfillstyle(1,7);
+	bar(250,10,380,60);
+	outtextxy(267,25,"-+3D+-");
+	setcolor(0);
+	line(2,70,450,70);
+	// toa do 2D (560,0,1339,685);
+	vetoado();
+}
+
+int main(){		
+	initwindow(1350,700);
+	setbkcolor(15);
+	cleardevice();
+	setcolor(3);
+	menu();
 //	int x,y,r;
 //	printf("Nhap tam va ban kinh duong tron: \n R= ");
 //	scanf("%d",&r);
@@ -117,13 +187,13 @@ int main(){
 //  cout<<"\nNhap toa do tam Elip \nx: "; cin>>x;
 //  cout<<"\ny: "; cin>>y;
 //  Elipse(x,y,200,100,c);// ve elip
-    rectangle(300,50,900,600);
-    setcolor(3);
-    line(305,301,888,303);
-    outtextxy(890,298,">");
-    outtextxy(596,53,"^");
-    settextjustify(0,2);
-    line(600,59,600,595);
+//    rectangle(300,50,900,600);
+//    setcolor(3);
+//    line(305,301,888,303);
+//    outtextxy(890,298,">");
+//    outtextxy(596,53,"^");
+//    settextjustify(0,2);
+//    line(600,59,600,595);
     //outtextxy(54,590,"^");
 	getch();
 }
