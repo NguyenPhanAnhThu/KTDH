@@ -1,20 +1,29 @@
-/* 
-graphics in Dev-C++ - nguyenvanquan7826 
-*/
 #include <iostream>
 #include <stdio.h>
 #include <conio.h>
 #include <math.h>
 #include <windows.h>
-#include <winbgim.h> 
+//#include <winbgim.h> 
 #include "mylib.h"
-//#include <graphics.h>
+#include "data.h"
+#include <graphics.h>
 using namespace std;
+
+void cuong();
+
+void cuong() {
+	int x, y;
+	while (1) {
+		if (ismouseclick(WM_LBUTTONDOWN)){
+			getmouseclick(WM_LBUTTONDOWN, x, y);
+			cout << x << " " << y << endl;
+		}
+		delay(0.00001);
+	}
+	return;
+}
 // toa do khung ve
-const int 	TDGOC_X=560, 
-			TDGOC_Y=0,
-			TDCUOI_X=1335,
-			TDCUOI_Y=685;
+
 int c = 3;
 void menu();
 void vetoado()
@@ -167,6 +176,7 @@ void menu()
 	line(2,70,450,70);
 	// toa do 2D (560,0,1339,685);
 	vetoado();
+
 }
 
 int main(){	
@@ -176,6 +186,7 @@ int main(){
 	cleardevice();
 	setcolor(3);
 	menu();
+	cuong();
 //	int x,y,r;
 //	printf("Nhap tam va ban kinh duong tron: \n R= ");
 //	scanf("%d",&r);
