@@ -12,15 +12,15 @@ void DDALine(int x1,int y1,int x2,int y2,int c); // ve doan thang
 void vetoado();
 void menu();
 void cuong();
+void Elipse(int x_center,int y_center,int a,int b,int color);
 void put5pixel(int x,int y);
-void midpoint(int x1,int y1,int x2,int y2);
+void MidPoint(int x1,int y1,int x2,int y2);
 void put5pixel(int x,int y)
 {
 	int x1,x2,y1,y2;
 	x1=(x/5)*5;y1=(y/5)*5;
 	x2=x1+5;y2=y1+5;
-	setfillstyle(1,0);
-				
+	setfillstyle(1,0);				
 	bar(x1,y1,x2,y2);
 }
 void cuong() {
@@ -37,6 +37,10 @@ void cuong() {
 				d1y=y;
 			}
 			cout << x << " " << y << endl;
+<<<<<<< HEAD
+=======
+			
+>>>>>>> 00ad7c5cce8f5135f3f1f8e9482826bf2cdd6c44
 			if(x>=TDGOC_X && y>=TDGOC_Y)
 			{
 				put5pixel(x,y);
@@ -47,7 +51,8 @@ void cuong() {
 				if(d1x>TDGOC_X && x>TDGOC_X)
 				{
 					//DDALine(d1x,d1y,x,y,3);					
-					midpoint(d1x,d1y,x,y);
+					MidPoint(d1x,d1y,x,y);
+					//Elipse(d1x,d1y,x,y,3);
 				}
 				diem=0;
 			}
@@ -59,7 +64,10 @@ void cuong() {
 					menu();
 				}
 			
+<<<<<<< HEAD
 
+=======
+>>>>>>> 00ad7c5cce8f5135f3f1f8e9482826bf2cdd6c44
 		}
 		delay(0.00001);
 	}
@@ -73,11 +81,18 @@ void vetoado()
 {
 	setcolor(3);
 	// ve doc
+<<<<<<< HEAD
+=======
+
+>>>>>>> 00ad7c5cce8f5135f3f1f8e9482826bf2cdd6c44
 	for(int i=TDGOC_X+5;i<=TDCUOI_X;i+=5)
 	     	{
 	    		line(i,TDGOC_Y,i,TDCUOI_Y);
 	    	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 00ad7c5cce8f5135f3f1f8e9482826bf2cdd6c44
 	//ve ngang
 	for(int i=TDGOC_Y+5;i<TDCUOI_Y;i+=5)
 		{
@@ -129,41 +144,80 @@ void DDALine(int x1,int y1,int x2,int y2,int c) {
 	}
 }
 // Ve duong thang midpoint
-void midpoint(int x1,int y1,int x2, int y2){
-    //Truong hop 0<m<1 && x1<x2 && y1<y2
-    int a,b,pi,x,y,p;
-    int color=1;
-    a=y2-y1;
-    b=-(x2-x1);
-    y=y1;
-    x=x1;
-    //put5pixel(x,y);
-    putpixel(x,y,color);    //Ve diem pixel dau tien
-    p=2*a+b;        //tinh vi tri tuong doi cua diem Midpoint so voi duong thang
-    while(x < x2){
-        if(p < 0){   
-            p+=2*a; // ta chon chon diem yi
-        }else{      
-            y++;
-            p+=2*(a+b);//ta chon diem yi +1
-        }
-        x++;
-        cout<<"Pixel (x,y) midpoint = ("<<x<<", "<<y<<")\n";
-        //put5pixel(x,y);
-        putpixel(x,y,color);
-        delay(10);
-    }
+void MidPoint(int x1, int y1, int x2, int y2){
+	int x, y, dX, dY, p1, p2, absdX, absdY, xE, yE;
+	dX = x2 - x1;				//denta x
+	dY = y2 - y1;				//denta y
+	absdX = fabs(double(dX));	//lay tri tuyet doi denta x
+	absdY = fabs(double(dY));	//lay tri tuyet doi denta y
+	p1 = 2*absdY - absdX;
+	p2 = 2*absdX - absdY;
+
+	int xUnit, yUnit;
+	float m = float(dY) / dX;
+
+	if (m < 0) xUnit = yUnit = -1;
+	else xUnit = yUnit = 1;
+
+	if (absdY <= absdX){	//ung voi moi gia tri cua x tinh gia tri y
+		if (dX >= 0) {	//diem dau(x1,y1) nam ben trai diem cuoi(x2,y2)
+			x = x1;		//gan diem dau la diem nam ben trai(x1,y1)
+			y = y1;
+			xE = x2;	//diem cuoi la diem nam ben phai(x2,y2)
+		}
+		else {			//diem dau nam ben phai diem cuoi
+			x = x2;		//gan diem dau la diem nam ban phai
+			y = y2;
+			xE = x1;
+		}
+		put5pixel(x,y);
+		for (x; x < xE; x++) {
+			if (p1 <= 0) p1 += 2*absdY;
+			else {
+				y += yUnit;
+				p1 += (2*absdY - 2*absdX);
+			}
+			put5pixel(x,y);
+			delay(10);
+		}
+	}
+	else{			
+		if (dY >= 0) {
+			x = x1;
+			y = y1;
+			yE = y2;
+		}
+		else {
+			x = x2;
+			y = y2;
+			yE = y1;
+		}
+		put5pixel(x,y);
+		for (y; y < yE; y++) {
+			if (p2 <= 0)	p2 += 2*absdX;
+			else{
+				x += xUnit;
+				p2 += (2*absdX - 2*absdY);
+			}
+			put5pixel(x,y);
+			delay(10);
+		}
+	}
 }
 
 // ve hinh elip
 
 void Ve4diem(int xc,int yc,int x, int y,int color)//ve 4 diem doi xung
 {
-    putpixel(xc+x,yc+y,color);
-    putpixel(xc-x,yc+y,color);
-    putpixel(xc-x,yc-y,color);
-    putpixel(xc+x,yc-y,color);
+    put5pixel(xc+x,yc+y);
+    put5pixel(xc-x,yc+y);
+    put5pixel(xc-x,yc-y);
+    put5pixel(xc+x,yc-y);
     //delay(50);
+//    putpixel(xc+x,yc+y,color);
+//    putpixel(xc-x,yc+y,color);
+//    putpixel(xc-x,yc-y,color);
+//    putpixel(xc+x,yc-y,color);
 }
 void Elipse(int x_center,int y_center,int a,int b,int color)// ve elipse
 {
@@ -268,26 +322,6 @@ int main(){
 	setcolor(3);
 	menu();
 	cuong();
-//	int x,y,r;
-//	printf("Nhap tam va ban kinh duong tron: \n R= ");
-//	scanf("%d",&r);
-//	printf("Tam duong tron: \n x= ");
-//	scanf("%d",&x);
-//	printf("\n y= ");
-//	scanf("%d",&y);
-//	circle_bresenham(x,y,r); //ve duong tron
-//	DDALine(10,10,200,100,3); //ve doan thang
-//  cout<<"\nNhap toa do tam Elip \nx: "; cin>>x;
-//  cout<<"\ny: "; cin>>y;
-//  Elipse(x,y,200,100,c);// ve elip
-//    rectangle(300,50,900,600);
-//    setcolor(3);
-//    line(305,301,888,303);
-//    outtextxy(890,298,">");
-//    outtextxy(596,53,"^");
-//    settextjustify(0,2);
-//    line(600,59,600,595);
-    //outtextxy(54,590,"^");
 	getch();
 }
 
