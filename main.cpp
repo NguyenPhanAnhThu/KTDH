@@ -13,6 +13,7 @@ void vetoado();
 void menu();
 void cuong();
 void put5pixel(int x,int y);
+void midpoint(int x1,int y1,int x2,int y2);
 void put5pixel(int x,int y)
 {
 	int x1,x2,y1,y2;
@@ -45,7 +46,8 @@ void cuong() {
 			{
 				if(d1x>TDGOC_X && x>TDGOC_X)
 				{
-					DDALine(d1x,d1y,x,y,3);					
+					//DDALine(d1x,d1y,x,y,3);					
+					midpoint(d1x,d1y,x,y);
 				}
 				diem=0;
 			}
@@ -119,6 +121,32 @@ void DDALine(int x1,int y1,int x2,int y2,int c) {
 		//putpixel(x,round(y),c);
 		put5pixel(x,y);
 	}
+}
+// Ve duong thang midpoint
+void midpoint(int x1,int y1,int x2, int y2){
+    //Truong hop 0<m<1 && x1<x2 && y1<y2
+    int a,b,pi,x,y,p;
+    int color=1;
+    a=y2-y1;
+    b=-(x2-x1);
+    y=y1;
+    x=x1;
+    //put5pixel(x,y);
+    putpixel(x,y,color);    //Ve diem pixel dau tien
+    p=2*a+b;        //tinh vi tri tuong doi cua diem Midpoint so voi duong thang
+    while(x < x2){
+        if(p < 0){   
+            p+=2*a; // ta chon chon diem yi
+        }else{      
+            y++;
+            p+=2*(a+b);//ta chon diem yi +1
+        }
+        x++;
+        cout<<"Pixel (x,y) midpoint = ("<<x<<", "<<y<<")\n";
+        //put5pixel(x,y);
+        putpixel(x,y,color);
+        delay(10);
+    }
 }
 
 // ve hinh elip
