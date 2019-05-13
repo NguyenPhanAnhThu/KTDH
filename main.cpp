@@ -17,6 +17,12 @@ void cuong() {
 		if (ismouseclick(WM_LBUTTONDOWN)){
 			getmouseclick(WM_LBUTTONDOWN, x, y);
 			cout << x << " " << y << endl;
+			x = (x-560)/5 + 560;
+			y = y/5 * 5;
+//			int TDx= (x/5)+560, TDy= (y)/5, TDCx= TDx+5, TDCy= TDy+5;
+			setcolor(5);
+			for(int i = x; i < x+5; i++)
+	     		line(i, y, i, y+5);
 		}
 		delay(0.00001);
 	}
@@ -31,15 +37,19 @@ void vetoado()
 	setcolor(3);
 	// ve doc
 	for(int i=TDGOC_X+5;i<=TDCUOI_X;i+=5)
-		{
-			line(i,TDGOC_Y,i,TDCUOI_Y);
-		}
+	     	{
+	    		line(i,TDGOC_Y,i,TDCUOI_Y);
+	    	}
 	//ve ngang
 	for(int i=TDGOC_Y+5;i<=TDCUOI_Y;i+=5)
 		{
 			line(TDGOC_X,i,TDCUOI_X,i);
 		}
 }
+
+
+
+
 void draw8point(int x,int y,int x0,int y0){ //ve 8 diem doi xung
 	putpixel(x0+x,y0+y,c);
 	putpixel(x0-x,y0-y,c);
