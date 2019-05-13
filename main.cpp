@@ -37,14 +37,6 @@ void cuong() {
 				d1y=y;
 			}
 			cout << x << " " << y << endl;
-<<<<<<< HEAD
-			x = (x-560)/5 + 560;
-			y = y/5 * 5;
-//			int TDx= (x/5)+560, TDy= (y)/5, TDCx= TDx+5, TDCy= TDy+5;
-			setcolor(5);
-			for(int i = x; i < x+5; i++)
-	     		line(i, y, i, y+5);
-=======
 			if(x>=TDGOC_X && y>=TDGOC_Y)
 			{
 				put5pixel(x,y);
@@ -67,7 +59,7 @@ void cuong() {
 					menu();
 				}
 			
->>>>>>> 2cacaa8de6177bc9cf762b79a6dce35d20d0b0d7
+
 		}
 		delay(0.00001);
 	}
@@ -81,17 +73,11 @@ void vetoado()
 {
 	setcolor(3);
 	// ve doc
-<<<<<<< HEAD
 	for(int i=TDGOC_X+5;i<=TDCUOI_X;i+=5)
 	     	{
 	    		line(i,TDGOC_Y,i,TDCUOI_Y);
 	    	}
-=======
-	for(int i=TDGOC_X+5;i<TDCUOI_X;i+=5)
-		{
-			line(i,TDGOC_Y+1,i,TDCUOI_Y);
-		}
->>>>>>> 2cacaa8de6177bc9cf762b79a6dce35d20d0b0d7
+
 	//ve ngang
 	for(int i=TDGOC_Y+5;i<TDCUOI_Y;i+=5)
 		{
