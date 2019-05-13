@@ -8,21 +8,64 @@
 #include "data.h"
 #include <graphics.h>
 using namespace std;
-
+void DDALine(int x1,int y1,int x2,int y2,int c); // ve doan thang
+void vetoado();
+void menu();
 void cuong();
-
+void put5pixel(int x,int y);
+void put5pixel(int x,int y)
+{
+	int x1,x2,y1,y2;
+	x1=(x/5)*5;y1=(y/5)*5;
+	x2=x1+5;y2=y1+5;
+	setfillstyle(1,0);
+				
+	bar(x1,y1,x2,y2);
+}
 void cuong() {
-	int x, y;
+	int x, y,diem=0;
+	int d1x,d1y;
+	int x1,y1,x2,y2;
 	while (1) {
 		if (ismouseclick(WM_LBUTTONDOWN)){
 			getmouseclick(WM_LBUTTONDOWN, x, y);
+			diem++;
+			if(diem==1)
+			{
+				d1x=x;
+				d1y=y;
+			}
 			cout << x << " " << y << endl;
+<<<<<<< HEAD
 			x = (x-560)/5 + 560;
 			y = y/5 * 5;
 //			int TDx= (x/5)+560, TDy= (y)/5, TDCx= TDx+5, TDCy= TDy+5;
 			setcolor(5);
 			for(int i = x; i < x+5; i++)
 	     		line(i, y, i, y+5);
+=======
+			if(x>=TDGOC_X && y>=TDGOC_Y)
+			{
+				put5pixel(x,y);
+			}
+			//ve doan thang
+			if(diem==2)
+			{
+				if(d1x>TDGOC_X && x>TDGOC_X)
+				{
+					DDALine(d1x,d1y,x,y,3);					
+				}
+				diem=0;
+			}
+					
+			// xoa nhung gi co tren do thi		
+			if(x>=350 && x<=420 && y>=85 && y<=115)
+				{
+					cleardevice();
+					menu();
+				}
+			
+>>>>>>> 2cacaa8de6177bc9cf762b79a6dce35d20d0b0d7
 		}
 		delay(0.00001);
 	}
@@ -36,14 +79,21 @@ void vetoado()
 {
 	setcolor(3);
 	// ve doc
+<<<<<<< HEAD
 	for(int i=TDGOC_X+5;i<=TDCUOI_X;i+=5)
 	     	{
 	    		line(i,TDGOC_Y,i,TDCUOI_Y);
 	    	}
-	//ve ngang
-	for(int i=TDGOC_Y+5;i<=TDCUOI_Y;i+=5)
+=======
+	for(int i=TDGOC_X+5;i<TDCUOI_X;i+=5)
 		{
-			line(TDGOC_X,i,TDCUOI_X,i);
+			line(i,TDGOC_Y+1,i,TDCUOI_Y);
+		}
+>>>>>>> 2cacaa8de6177bc9cf762b79a6dce35d20d0b0d7
+	//ve ngang
+	for(int i=TDGOC_Y+5;i<TDCUOI_Y;i+=5)
+		{
+			line(TDGOC_X+1,i,TDCUOI_X,i);
 		}
 }
 
@@ -79,13 +129,15 @@ void circle_bresenham(int x0,int y0,int r){ //ve duong tron
 void DDALine(int x1,int y1,int x2,int y2,int c) {
 	int x=x1;
 	float y=y1;
-	float k=(float)(y2-y1)/(x2-x1);
-	putpixel(x,round(y),c);
+	float k=(float)abs(y2-y1)/abs(x2-x1);
+	//putpixel(x,round(y),c);
+	put5pixel(x,y);
 	for(int i=x1;i<=x2;i++)
 	{
 		x++;
 		y=y+k;
-		putpixel(x,round(y),c);
+		//putpixel(x,round(y),c);
+		put5pixel(x,y);
 	}
 }
 
@@ -184,6 +236,11 @@ void menu()
 	outtextxy(267,25,"-+3D+-");
 	setcolor(0);
 	line(2,70,450,70);
+	//nut xoa
+	settextstyle(0,0,2);
+	setcolor(4);
+	rectangle(350,85,420,115);
+	outtextxy(365,92,"Xoa");
 	// toa do 2D (560,0,1339,685);
 	vetoado();
 
