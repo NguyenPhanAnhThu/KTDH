@@ -15,6 +15,10 @@ void cuong();
 void Elipse(int x_center,int y_center,int a,int b,int color);
 void put5pixel(int x,int y);
 void MidPoint(int x1,int y1,int x2,int y2);
+void Dung()
+{
+	cout <<"DUng";
+}
 void put5pixel(int x,int y)
 {
 	int x1,x2,y1,y2;
